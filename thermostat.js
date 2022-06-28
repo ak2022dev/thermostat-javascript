@@ -26,6 +26,13 @@ class Thermostat {
     this.temp -= Thermostat.downAmount;
   }
 
+  setPowerSavingMode(value) {
+    this.isPowerSaving = value;
+  }
+
+  getPowerSavingMode() {
+    return this.isPowerSaving;
+  }
 }
 
 module.exports = Thermostat;

@@ -21,5 +21,10 @@ describe( 'Thermostat class', () => {
     thermo.down();
     expect(thermo.getTemp()).toBe(21);
   });
+  it( 'can enable power-saving mode', () => {
+    const thermo = new Thermostat();
+    thermo.setPowerSavingMode(true);
+    expect(thermo.getPowerSavingMode()).toBe(true);
+  });
 
 });
