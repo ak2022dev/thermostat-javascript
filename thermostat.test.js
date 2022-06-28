@@ -14,4 +14,12 @@ describe( 'Thermostat class', () => {
     thermo.up();
     expect(thermo.getTemp()).toBe(22);
   });
+  it( 'decreases temperature by 1 degree at a time within allowed range', () => {
+    const thermo = new Thermostat();
+    thermo.up();
+    thermo.up();
+    thermo.down();
+    expect(thermo.getTemp()).toBe(21);
+  });
+
 });
