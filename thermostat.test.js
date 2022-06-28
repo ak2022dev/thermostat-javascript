@@ -8,4 +8,10 @@ describe( 'Thermostat class', () => {
     const thermo = new Thermostat();
     expect(thermo.getTemp()).toBe(20);
   });
+  it( 'increases temperature by 1 degree at a time within allowed range', () => {
+    const thermo = new Thermostat();
+    thermo.up();
+    thermo.up();
+    expect(thermo.getTemp()).toBe(22);
+  });
 });
