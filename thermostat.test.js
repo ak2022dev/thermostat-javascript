@@ -42,5 +42,13 @@ describe( 'Thermostat class', () => {
     }
     expect(thermo.getTemp()).toBe(Thermostat.getMaxNoPowerSaving());
   });
-
+  it( 'has a functioning reset switch', () => {
+    const thermo = new Thermostat();
+    thermo.setPowerSavingMode(false);
+    for (let i = 0 ; i < 20 ; i++) {
+      thermo.up();
+    }
+    thermo.reset();
+    expect(thermo.getTemp()).toBe(Thermostat.getResetTemp());
+  });
 });

@@ -51,6 +51,9 @@ class Thermostat {
     return this.isPowerSaving;
   }
 
+  reset() {
+    this.setTemp(Thermostat.getResetTemp());
+  }
   up() {
     this.temp += Thermostat.getUpAmount();
     if(this.getPowerSavingMode() === true ) {
