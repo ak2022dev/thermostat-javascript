@@ -14,16 +14,33 @@ class Thermostat {
     this.isPowerSaving = true;
   }
 
+
+  static getMaxWithPowerSaving() {
+    return Thermostat.maxWithPowerSaving;
+  }
+
+  static getMaxNoPowerSaving() {
+    return Thermostat.maxNoPowerSaving;
+  }
+
+  static getResetTemp() {
+    return Thermostat.resetTemp;
+  }
+
+  static getUpAmount() {
+    return Thermostat.upAmount;
+  }
+
+  static getDownAmount() {
+    return Thermostat.downAmount;
+  }
+
   getTemp() {
     return this.temp;
   }
 
-  up() {
-    this.temp += Thermostat.upAmount;
-  }
-
-  down() {
-    this.temp -= Thermostat.downAmount;
+  setTemp( temp ) {
+    this.temp = temp;
   }
 
   setPowerSavingMode(value) {
@@ -33,6 +50,25 @@ class Thermostat {
   getPowerSavingMode() {
     return this.isPowerSaving;
   }
+
+  up() {
+    this.temp += Thermostat.getUpAmount();
+    if(this.getPowerSavingMode() === true ) {
+      if( this.getTemp() > Thermostat.getMaxWithPowerSaving()) {
+        this.setTemp(Thermostat.getMaxWithPowerSaving()); 
+      }
+    }
+    if(this.getPowerSavingMode() === false ) {
+      if( this.getTemp() > Thermostat.getMaxNoPowerSaving()) {
+        this.setTemp(Thermostat.getMaxNoPowerSaving()); 
+      }
+    }
+  }
+    
+  down() {
+    this.temp -= Thermostat.getDownAmount();
+  }
+  
 }
 
 module.exports = Thermostat;

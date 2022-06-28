@@ -26,5 +26,21 @@ describe( 'Thermostat class', () => {
     thermo.setPowerSavingMode(true);
     expect(thermo.getPowerSavingMode()).toBe(true);
   });
+  it( 'can cap max temperature with power-saving mode on', () => {
+    const thermo = new Thermostat();
+    thermo.setPowerSavingMode(true);
+    for (let i = 0 ; i < 10 ; i++) {
+      thermo.up();
+    }
+    expect(thermo.getTemp()).toBe(Thermostat.getMaxWithPowerSaving());
+  });
+  it( 'can go to a higher temperature with power-saving mode off', () => {
+    const thermo = new Thermostat();
+    thermo.setPowerSavingMode(false);
+    for (let i = 0 ; i < 20 ; i++) {
+      thermo.up();
+    }
+    expect(thermo.getTemp()).toBe(Thermostat.getMaxNoPowerSaving());
+  });
 
 });
